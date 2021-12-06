@@ -1,0 +1,9 @@
+parse_stricter https://github.com/awseward/gh-actions-dhall/raw/26f11852b3a23759133146a44663aeafb2a6c57d/action.yml ./test/expressions/toUnion.dhall
+parse_stricter https://github.com/Azure/appservice-settings/raw/233d3bfd27b273c844ec829676c77c16ab478117/action.yml ./test/expressions/toUnion.dhall
+parse_stricter https://github.com/patheard/composite-github-actions/raw/55fc82899f54f2c8f6ea3db565ab0052abdd9330/action.yml ./test/expressions/toUnion.dhall
+
+parse_sample_action composite
+parse_sample_action docker
+parse_sample_action javascript
+
+parse_stricter ./test/data/actions/composite/action.yml ./test/expressions/isComposite.dhall

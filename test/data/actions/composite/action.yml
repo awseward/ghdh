@@ -1,0 +1,10 @@
+name: 'Composite action (Test)'
+author: 'Beep Boop <beepboop@example.com>'
+description: This is a sample composite action for testing
+runs:
+  using: composite
+  steps:
+    - run: "echo 'Hello!'"
+      shell: bash
+    - run: "echo 'Hello…? Is anyone there?'"
+      shell: bash

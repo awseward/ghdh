@@ -1,0 +1,6 @@
+name: 'Javascript action (Test)'
+author: 'Beep Boop <beepboop@example.com>'
+description: This is a sample javascript action for testing
+runs:
+  main: main.js
+  using: node12

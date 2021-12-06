@@ -1,0 +1,9 @@
+name: 'Docker action (Test)'
+author: 'Beep Boop <beepboop@example.com>'
+description: This is a sample Docker action for testing
+runs:
+  using: docker
+  image: 'docker://debian:latest'
+  args:
+    - foo
+    - bar
