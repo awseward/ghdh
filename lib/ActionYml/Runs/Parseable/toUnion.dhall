@@ -35,14 +35,11 @@ let toDocker
               (   base parseable
                 ⫽ parseable.{ args
                             , entrypoint
+                            , env
                             , post-entrypoint
                             , pre-entrypoint
                             }
-                ⫽ { env =
-                      -- TODO: Implement env
-                      {=}
-                  , image = mustText parseable.image
-                  }
+                ⫽ { image = mustText parseable.image }
               )
 
 let toComposite
