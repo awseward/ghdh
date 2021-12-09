@@ -39,7 +39,7 @@ let toDocker
                             , pre-entrypoint
                             }
                 ⫽ { env =
-                      -- TODO
+                      -- TODO: Implement env
                       {=}
                   , image = mustText parseable.image
                   }

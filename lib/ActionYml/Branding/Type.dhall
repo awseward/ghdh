@@ -1,7 +1,2 @@
-{ color :
-    -- TODO: Figure out if this shoule be Optional Text
-    Text
-, icon :
-    -- TODO: Figure out if this shoule be Optional Text
-    Text
-}
+-- TODO: Investigate whether either or both of these fields can be optional
+{ color : Text, icon : Text }

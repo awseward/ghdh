@@ -8,7 +8,7 @@
     Optional <>
 , image : Optional Text
 , env :
-    -- TODO
+    -- TODO: Implement env
     Optional {}
 , pre-entrypoint : Optional Text
 , entrypoint : Optional Text
