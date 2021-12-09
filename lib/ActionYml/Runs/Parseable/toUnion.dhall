@@ -15,8 +15,6 @@ let mustText =
 
       Opt.default Text "__INVALID_missing_required_value__"
 
-let orEmpty = λ(a : Type) → Opt.default (List a) ([] : List a)
-
 let toJavascript
     : Parseable.Type → Runs.Type
     = λ(parseable : Parseable.Type) →
@@ -35,12 +33,12 @@ let toDocker
 
         in  mkUnionValue
               (   base parseable
-                ⫽ parseable.{ entrypoint, post-entrypoint, pre-entrypoint }
-                ⫽ { args =
-                      -- TODO: Figure out if we can make this list non-optional
-                      -- on `Parseable`
-                      orEmpty Text parseable.args
-                  , env =
+                ⫽ parseable.{ args
+                            , entrypoint
+                            , post-entrypoint
+                            , pre-entrypoint
+                            }
+                ⫽ { env =
                       -- TODO
                       {=}
                   , image = mustText parseable.image
@@ -52,10 +50,7 @@ let toComposite
     = λ(parseable : Parseable.Type) →
         let mkUnionValue = Runs.Type.Composite
 
-        let steps =
-            -- TODO: Figure out if we can make this list non-optional
-            -- on `Parseable`
-              orEmpty ../Composite/Step/Type.dhall parseable.steps
+        let steps = parseable.steps
 
         in  mkUnionValue (base parseable ⫽ { steps })
 

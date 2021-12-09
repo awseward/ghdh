@@ -2,7 +2,7 @@
 , __compositeFields__ :
     -- ============================================= Composite fields start here
     Optional <>
-, steps : Optional (List ../Composite/Step/Type.dhall)
+, steps : List ../Composite/Step/Type.dhall
 , __dockerFields__ :
     -- ================================================ Docker fields start here
     Optional <>
@@ -13,7 +13,7 @@
 , pre-entrypoint : Optional Text
 , entrypoint : Optional Text
 , post-entrypoint : Optional Text
-, args : Optional (List Text)
+, args : List Text
 , __javascriptFields__ :
     -- ============================================ Javascript fields start here
     Optional <>
