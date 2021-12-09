@@ -38,9 +38,12 @@ run_one() {
 }
 
 run_many() {
-  while read -r line; do
-    xargs -t "$0" run_one <<< "${line}"
-  done
+  # This nonsense is necessary to be able to use the `-d` flag…
+  local _xargs='xargs'
+  type gxargs >/dev/null 2>&1 && _xargs='gxargs'
+  readonly _xargs
+
+  "${_xargs}" -P4 -n1 -d $'\n' -t "$0" run_one
 }
 
 _choose_cases() {
