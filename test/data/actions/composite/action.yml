@@ -1,9 +1,22 @@
 name: 'Composite action (Test)'
 author: 'Beep Boop <beepboop@example.com>'
 description: This is a sample composite action for testing
+inputs:
+  maxConcurrency:
+    description: Maximum number of concurrent processes
+    required: false
+    default: 1
+  logoColor:
+    description: Which color the logo should be
+    required: true
+outputs:
+  sum:
+    description: The sum of the inputs
+
 runs:
   using: composite
   steps:
+    - uses: actions/checkout@v2
     - run: "echo 'Hello!'"
       shell: bash
     - run: "echo 'Hello…? Is anyone there?'"

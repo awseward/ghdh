@@ -1,9 +1,28 @@
 name: 'Docker action (Test)'
 author: 'Beep Boop <beepboop@example.com>'
 description: This is a sample Docker action for testing
+inputs:
+  maxConcurrency:
+    description: Maximum number of concurrent processes
+    required: false
+    default: 1
+  logoColor:
+    description: Which color the logo should be
+    required: true
+outputs:
+  sum:
+    description: The sum of the inputs
+
 runs:
   using: docker
   image: 'docker://debian:latest'
   args:
     - foo
     - bar
+  env:
+    FORCE: true
+    PAGER: less -R
+    THREADS: 8
+  pre-entrypoint: setup.sh
+  post-entrypoint: teardown.sh
+  entrypoint: main.sh

@@ -1,6 +1,18 @@
 name: 'Javascript action (Test)'
 author: 'Beep Boop <beepboop@example.com>'
 description: This is a sample javascript action for testing
+inputs:
+  maxConcurrency:
+    description: Maximum number of concurrent processes
+    required: false
+    default: 1
+  logoColor:
+    description: Which color the logo should be
+    required: true
+outputs:
+  sum:
+    description: The sum of the inputs
+
 runs:
   main: main.js
   using: node12
