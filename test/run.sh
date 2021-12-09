@@ -15,7 +15,7 @@ parse_stricter() {
   # >&2 echo "${tempfile}"
   parse_loose "${subject_location}" > "${tempfile}"
 
-  echo -n "DHALL_TEST_INPUT='${tempfile}' "
+  >&2 echo -n "DHALL_TEST_INPUT='${tempfile}' "
   DHALL_TEST_INPUT="${tempfile}" xargs -t \
     dhall --explain --file <<< "${test_expr}"
 }
