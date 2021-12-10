@@ -38,5 +38,5 @@ jobs:
           which dhall-to-yaml && dhall-to-yaml --version
           which yaml-to-dhall && yaml-to-dhall --version
 
-      - run: git test run --test ci
+      - run: git test run --color --test ci
       - run: git push origin 'refs/notes/tests/ci'
