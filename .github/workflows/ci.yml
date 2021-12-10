@@ -5,7 +5,7 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v2
-      - uses: awseward/git-test-setup@main
+      - uses: awseward/git-test-setup@0.1
         with:
           test_name: ci
           test_command: ./test/run.sh all
