@@ -1,0 +1,40 @@
+name: CI
+on: [push]
+jobs:
+  git-test:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v2
+      - uses: awseward/git-test-setup@main
+        with:
+          test_name: ci
+          test_command: ./test/run.sh all
+
+      # TODO: Pull this out to a dhall-setup action…
+      - run: |
+          dhall_haskell_ver='1.40.2'
+          bin_zip_name="dhall-${dhall_haskell_ver}-x86_64-linux.tar.bz2"
+          wget "https://github.com/dhall-lang/dhall-haskell/releases/download/${dhall_haskell_ver}/${bin_zip_name}" \
+            && tar -xjvf "./${bin_zip_name}" \
+            && rm -rvf "./${bin_zip_name}"
+
+          dhall_json_ver='1.7.9'
+          bin_zip_name="dhall-json-${dhall_json_ver}-x86_64-linux.tar.bz2"
+          wget "https://github.com/dhall-lang/dhall-haskell/releases/download/${dhall_haskell_ver}/${bin_zip_name}" \
+            && tar -xjvf "./${bin_zip_name}" \
+            && rm -rvf "./${bin_zip_name}"
+
+          dhall_yaml_ver='1.2.9'
+          bin_zip_name="dhall-yaml-${dhall_yaml_ver}-x86_64-linux.tar.bz2"
+          wget "https://github.com/dhall-lang/dhall-haskell/releases/download/${dhall_haskell_ver}/${bin_zip_name}" \
+            && tar -xjvf "./${bin_zip_name}" \
+            && rm -rvf "./${bin_zip_name}"
+
+          echo "PATH=${PATH}:$(pwd)/bin" >> "${GITHUB_ENV}"
+      - run: |
+          which dhall && dhall --version
+          which dhall-to-yaml && dhall-to-yaml --version
+          which yaml-to-dhall && yaml-to-dhall --version
+
+      - run: git test run --test ci
+      - run: git push origin 'refs/notes/tests/ci'
